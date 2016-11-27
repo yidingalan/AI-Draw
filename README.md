@@ -5,30 +5,26 @@
 <img src="http://www.petercollingridge.co.uk/sites/files/peter/charles_darwin%20and%20co.png" />
 </div>
 
-## Created by
+## What it does
 
-<a href="https://github.com/peterl328">Yang(Peter) Leng</a></br>
-<a href="https://github.com/yidingalan">Alan Yiding Wang</a></br>
-<a href="https://github.com/patrick-wu">Patrick Wu</a></br>
-<a href="https://github.com/zh5930">Leo Hao</a></br>
+This application allows users to upload a picture, and the goal is to mimic the picture using a collection of overlapping circles of various colours and transparencies. PS: It will take hours for it to complete, and it's not perfect (still need improvement)
 
-## Link
-<a href="https://devpost.com/software/ai-draw">Devpost Link</a></br>
+## Background: Darwinian Natural Selection
+The genetic algorithm takes ideas from actual biological evolution and applies it to software field. The following three principles are important for evolution to happen: <br><br>
+**Heredity**: Data (properties) passed from parent generation to the next generation <br>
+**Variation**: In each optimization, we are going to inroduce some variations; otherwise, it will always stay the same and evolution won't happen - mutation<br>
+**Selection**: "Survival of the fittest": better traits will be more likely to pass to the next generation - fitness function<br>
 
-##What it does
+## Technical background
+This application is written in **Javascript**. We use **P5.js** framework to visualize all the data<br>
 
-The computer iteratively attempts to mimic an input pictures through drawing it with 100 circles of varying circle and radii, and continuously improve its accuracy based on a generic genetic algorithm
+**Initialization**: We first create a population of 100 circles, each with random colors and radius (DNA).<br>
 
-##How we built it
+**Selection**: Then we evaluate the fitness of each circle (how "good" each circle is) and build a mating pool. <br>
 
-We followed 3 main steps that are common in genetic algorithms:
-1. Create population of a generation
-2. Use the current generation to breed a new generation. More accurately drawn individuals will be more likely to pass its traits down to its children
-3. Children will occasionally experience mutations, which are randomly occuring changes to their DNA properties.
+**Reproduction**: Pick two parents and create a "child" by combining their good traits and discard the bad ones (based on our fitness function). The new child will occasionally experience mutation based on probability. Then the new child will be added to the new population. Repeat this process until we get a new population<br>
 
-In our case, the DNA would be the coordinates and colors of all our circles.
-
-The actual app itself is built with the P5 JavaScript framework, which is similar to the Processing language/environment.
+**Final step**: Replace the old population with the new one and start from Selection step again. Repeat until our fitness score exceeds a certain threshold (When our picture gets really close to the original one). <br>
 
 ##Challenges we ran into
 The most challenging aspect was trying to optimize our fitness function, our cross-breeding function, as well as our mutation function, as the simulation takes a long time, and usually it is very difficult to get significant results in an hour. Thus, we had to be very careful in terms of when to test.
